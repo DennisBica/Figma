@@ -1,0 +1,442 @@
+import React, { useState } from 'react';
+import { Car, MapPin, Activity, Camera, Droplet, AlertCircle, Home, Book, Settings, Play, Clock, User } from 'lucide-react';
+
+export default function MicroMovePrototype() {
+  const [screen, setScreen] = useState('home');
+  const [selectedBodyPart, setSelectedBodyPart] = useState(null);
+
+  // Home Screen
+  const HomeScreen = () => (
+    <div className="p-6 space-y-4">
+      <div className="text-center mb-6">
+        <div className="inline-flex items-center gap-2 mb-2">
+          <Activity className="w-8 h-8" />
+          <h1 className="text-2xl font-bold">MicroMove</h1>
+        </div>
+        <p className="text-sm text-gray-600">Mikrorörelser för förare</p>
+      </div>
+
+      {/* Status Card */}
+      <div className="border-2 border-gray-800 p-4 bg-blue-50">
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-sm font-bold">Dagens körning</span>
+          <Clock className="w-4 h-4" />
+        </div>
+        <div className="text-3xl font-bold">2h 34min</div>
+        <div className="text-sm text-gray-600 mt-1">8 övningar genomförda ✓</div>
+      </div>
+
+      {/* Quick Actions */}
+      <div className="grid grid-cols-2 gap-3">
+        <button 
+          onClick={() => setScreen('redlight')}
+          className="border-2 border-gray-800 p-4 hover:bg-red-50 transition"
+        >
+          <div className="w-10 h-10 rounded-full bg-red-500 mx-auto mb-2"></div>
+          <div className="font-bold text-sm">Red Light</div>
+          <div className="text-xs text-gray-600">Routines</div>
+        </button>
+
+        <button 
+          onClick={() => setScreen('pain')}
+          className="border-2 border-gray-800 p-4 hover:bg-yellow-50 transition"
+        >
+          <AlertCircle className="w-10 h-10 mx-auto mb-2" />
+          <div className="font-bold text-sm">Pain Point</div>
+          <div className="text-xs text-gray-600">Mapper</div>
+        </button>
+
+        <button 
+          onClick={() => setScreen('tank')}
+          className="border-2 border-gray-800 p-4 hover:bg-green-50 transition"
+        >
+          <Droplet className="w-10 h-10 mx-auto mb-2" />
+          <div className="font-bold text-sm">Tank &</div>
+          <div className="text-xs text-gray-600">Stretch</div>
+        </button>
+
+        <button 
+          onClick={() => setScreen('posture')}
+          className="border-2 border-gray-800 p-4 hover:bg-purple-50 transition"
+        >
+          <Camera className="w-10 h-10 mx-auto mb-2" />
+          <div className="font-bold text-sm">Posture</div>
+          <div className="text-xs text-gray-600">Camera</div>
+        </button>
+      </div>
+
+      {/* GPS Status */}
+      <div className="border-2 border-gray-800 p-3 bg-green-50">
+        <div className="flex items-center gap-2">
+          <MapPin className="w-5 h-5" />
+          <span className="font-bold text-sm">Smart Pause: PÅ</span>
+        </div>
+        <div className="text-xs text-gray-600 mt-1">Vibrerar vid stopp</div>
+      </div>
+    </div>
+  );
+
+  // Red Light Routines Screen
+  const RedLightScreen = () => (
+    <div className="p-6 space-y-4">
+      <button onClick={() => setScreen('home')} className="text-sm underline mb-4">← Tillbaka</button>
+      
+      <h2 className="text-xl font-bold mb-4">Red Light Routines</h2>
+      <p className="text-sm text-gray-600 mb-4">20-sekunders övningar vid rödljus</p>
+
+      <div className="space-y-3">
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-start">
+            <div>
+              <div className="font-bold">Fotcirklar</div>
+              <div className="text-xs text-gray-600">Vänster fot: 10 cirklar</div>
+              <div className="text-xs text-gray-600">Höger fot: 10 cirklar</div>
+            </div>
+            <div className="text-2xl">👣</div>
+          </div>
+          <button className="mt-3 w-full border-2 border-gray-800 py-2 bg-blue-500 text-white font-bold">
+            <Play className="w-4 h-4 inline mr-1" /> Spela guide
+          </button>
+        </div>
+
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-start">
+            <div>
+              <div className="font-bold">Handled-stretches</div>
+              <div className="text-xs text-gray-600">Rotera handleder</div>
+              <div className="text-xs text-gray-600">Sträck fingrar</div>
+            </div>
+            <div className="text-2xl">✋</div>
+          </div>
+          <button className="mt-3 w-full border-2 border-gray-800 py-2 bg-blue-500 text-white font-bold">
+            <Play className="w-4 h-4 inline mr-1" /> Spela guide
+          </button>
+        </div>
+
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-start">
+            <div>
+              <div className="font-bold">Magaktivering</div>
+              <div className="text-xs text-gray-600">Dra in magen</div>
+              <div className="text-xs text-gray-600">Håll 5 sek, repetera</div>
+            </div>
+            <div className="text-2xl">💪</div>
+          </div>
+          <button className="mt-3 w-full border-2 border-gray-800 py-2 bg-blue-500 text-white font-bold">
+            <Play className="w-4 h-4 inline mr-1" /> Spela guide
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Pain Point Mapper Screen
+  const PainScreen = () => (
+    <div className="p-6 space-y-4">
+      <button onClick={() => setScreen('home')} className="text-sm underline mb-4">← Tillbaka</button>
+      
+      <h2 className="text-xl font-bold mb-4">Pain Point Mapper</h2>
+      <p className="text-sm text-gray-600 mb-4">Tryck på kroppsdelar som gör ont</p>
+
+      {/* Simple body diagram */}
+      <div className="border-2 border-gray-800 p-6 bg-gray-50">
+        <div className="max-w-xs mx-auto space-y-2">
+          <button 
+            onClick={() => setSelectedBodyPart('neck')}
+            className={`w-full border-2 border-gray-800 py-3 font-bold ${selectedBodyPart === 'neck' ? 'bg-red-200' : 'bg-white'}`}
+          >
+            Nacke 🔴
+          </button>
+          <button 
+            onClick={() => setSelectedBodyPart('shoulders')}
+            className={`w-full border-2 border-gray-800 py-3 font-bold ${selectedBodyPart === 'shoulders' ? 'bg-red-200' : 'bg-white'}`}
+          >
+            Axlar 🔴
+          </button>
+          <button 
+            onClick={() => setSelectedBodyPart('back')}
+            className={`w-full border-2 border-gray-800 py-3 font-bold ${selectedBodyPart === 'back' ? 'bg-red-200' : 'bg-white'}`}
+          >
+            Rygg 🔴
+          </button>
+          <button 
+            onClick={() => setSelectedBodyPart('legs')}
+            className={`w-full border-2 border-gray-800 py-3 font-bold ${selectedBodyPart === 'legs' ? 'bg-red-200' : 'bg-white'}`}
+          >
+            Ben 🔴
+          </button>
+        </div>
+      </div>
+
+      {selectedBodyPart && (
+        <div className="border-2 border-gray-800 p-4 bg-yellow-50">
+          <div className="font-bold mb-2">Rekommenderade övningar:</div>
+          <div className="text-sm space-y-1">
+            {selectedBodyPart === 'neck' && (
+              <>
+                <div>• Nackrullningar (30 sek)</div>
+                <div>• Huvudrotationer (20 sek)</div>
+                <div>• Sidböjningar (30 sek)</div>
+              </>
+            )}
+            {selectedBodyPart === 'shoulders' && (
+              <>
+                <div>• Axelrullningar (30 sek)</div>
+                <div>• Armcirklar (40 sek)</div>
+                <div>• Skulderblad squeeze (20 sek)</div>
+              </>
+            )}
+            {selectedBodyPart === 'back' && (
+              <>
+                <div>• Ryggsträckning (30 sek)</div>
+                <div>• Sidböjningar i sätet (40 sek)</div>
+                <div>• Twist-stretch (30 sek)</div>
+              </>
+            )}
+            {selectedBodyPart === 'legs' && (
+              <>
+                <div>• Fotpumpar (30 sek)</div>
+                <div>• Knälyft (40 sek)</div>
+                <div>• Vadstretch (30 sek)</div>
+              </>
+            )}
+          </div>
+          <button className="mt-3 w-full border-2 border-gray-800 py-2 bg-green-500 text-white font-bold">
+            Starta övningsprogram
+          </button>
+        </div>
+      )}
+    </div>
+  );
+
+  // Tank & Stretch Screen
+  const TankScreen = () => (
+    <div className="p-6 space-y-4">
+      <button onClick={() => setScreen('home')} className="text-sm underline mb-4">← Tillbaka</button>
+      
+      <h2 className="text-xl font-bold mb-4">Tank & Stretch</h2>
+      <p className="text-sm text-gray-600 mb-4">3-5 min fullkroppsrutiner vid tankning</p>
+
+      <div className="space-y-3">
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-start mb-2">
+            <div>
+              <div className="font-bold">Snabb Full Body</div>
+              <div className="text-xs text-gray-600">3 minuter • 6 övningar</div>
+            </div>
+            <div className="text-xl">⚡</div>
+          </div>
+          <div className="text-xs text-gray-600 mb-3">
+            Nacke → Axlar → Rygg → Höfter → Ben → Fötter
+          </div>
+          <button className="w-full border-2 border-gray-800 py-2 bg-green-500 text-white font-bold">
+            Starta rutin (3:00)
+          </button>
+        </div>
+
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-start mb-2">
+            <div>
+              <div className="font-bold">Djup Stretch</div>
+              <div className="text-xs text-gray-600">5 minuter • 8 övningar</div>
+            </div>
+            <div className="text-xl">🧘</div>
+          </div>
+          <div className="text-xs text-gray-600 mb-3">
+            Fokus på problemzoner + andning
+          </div>
+          <button className="w-full border-2 border-gray-800 py-2 bg-green-500 text-white font-bold">
+            Starta rutin (5:00)
+          </button>
+        </div>
+
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-start mb-2">
+            <div>
+              <div className="font-bold">Ryggspecialist</div>
+              <div className="text-xs text-gray-600">4 minuter • 5 övningar</div>
+            </div>
+            <div className="text-xl">🎯</div>
+          </div>
+          <div className="text-xs text-gray-600 mb-3">
+            Extra omsorg för rygg och bål
+          </div>
+          <button className="w-full border-2 border-gray-800 py-2 bg-green-500 text-white font-bold">
+            Starta rutin (4:00)
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Posture Camera Screen
+  const PostureScreen = () => (
+    <div className="p-6 space-y-4">
+      <button onClick={() => setScreen('home')} className="text-sm underline mb-4">← Tillbaka</button>
+      
+      <h2 className="text-xl font-bold mb-4">Posture Camera</h2>
+      <p className="text-sm text-gray-600 mb-4">Ta foto av din sittposition</p>
+
+      <div className="border-2 border-gray-800 p-6 bg-gray-100 min-h-64 flex items-center justify-center">
+        <div className="text-center">
+          <Camera className="w-16 h-16 mx-auto mb-4 text-gray-400" />
+          <div className="text-gray-600 mb-4">Kamera aktiveras här</div>
+          <div className="text-xs text-gray-500">
+            Positionera dig i sidovy<br/>
+            Hela överkroppen ska synas
+          </div>
+        </div>
+      </div>
+
+      <div className="border-2 border-gray-800 p-4 bg-blue-50">
+        <div className="font-bold text-sm mb-2">Tips för bästa resultat:</div>
+        <div className="text-xs space-y-1">
+          <div>✓ Sitt som du brukar sitta</div>
+          <div>✓ Ta foto från sidan (passagerarsidan)</div>
+          <div>✓ Helst med naturligt ljus</div>
+        </div>
+      </div>
+
+      <button className="w-full border-2 border-gray-800 py-3 bg-purple-500 text-white font-bold">
+        <Camera className="w-5 h-5 inline mr-2" />
+        Ta foto & analysera
+      </button>
+    </div>
+  );
+
+  // Library Screen (bonus)
+  const LibraryScreen = () => (
+    <div className="p-6 space-y-4">
+      <h2 className="text-xl font-bold mb-4">Övningsbibliotek</h2>
+      <p className="text-sm text-gray-600 mb-4">50+ övningar för förarsätet</p>
+
+      <div className="flex gap-2 mb-4 overflow-x-auto">
+        <button className="px-4 py-2 border-2 border-gray-800 bg-gray-800 text-white whitespace-nowrap">Alla</button>
+        <button className="px-4 py-2 border-2 border-gray-800 whitespace-nowrap">Nacke</button>
+        <button className="px-4 py-2 border-2 border-gray-800 whitespace-nowrap">Rygg</button>
+        <button className="px-4 py-2 border-2 border-gray-800 whitespace-nowrap">Ben</button>
+        <button className="px-4 py-2 border-2 border-gray-800 whitespace-nowrap">Axlar</button>
+      </div>
+
+      <div className="space-y-2">
+        {['Nackrullningar', 'Axelsträck', 'Ryggvrid', 'Vadstretch', 'Handledsrotation'].map((exercise, i) => (
+          <div key={i} className="border-2 border-gray-800 p-3 bg-white flex justify-between items-center">
+            <div>
+              <div className="font-bold text-sm">{exercise}</div>
+              <div className="text-xs text-gray-600">30 sek • Video finns</div>
+            </div>
+            <Play className="w-5 h-5" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  // Settings Screen
+  const SettingsScreen = () => (
+    <div className="p-6 space-y-4">
+      <h2 className="text-xl font-bold mb-4">Inställningar</h2>
+
+      <div className="space-y-3">
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-center">
+            <div>
+              <div className="font-bold">Silent Mode</div>
+              <div className="text-xs text-gray-600">Bara vibrationer, inga ljud</div>
+            </div>
+            <div className="w-12 h-6 bg-green-500 border-2 border-gray-800 rounded-full relative">
+              <div className="w-5 h-5 bg-white border-2 border-gray-800 rounded-full absolute right-0"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="flex justify-between items-center">
+            <div>
+              <div className="font-bold">Smart Pause Detection</div>
+              <div className="text-xs text-gray-600">GPS-baserade påminnelser</div>
+            </div>
+            <div className="w-12 h-6 bg-green-500 border-2 border-gray-800 rounded-full relative">
+              <div className="w-5 h-5 bg-white border-2 border-gray-800 rounded-full absolute right-0"></div>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-2 border-gray-800 p-4 bg-white">
+          <div className="font-bold mb-2">Påminnelseintervall</div>
+          <div className="text-xs text-gray-600 mb-3">Hur ofta vill du få övningsförslag?</div>
+          <div className="space-y-2">
+            <button className="w-full border-2 border-gray-800 py-2 bg-gray-800 text-white">Var 30:e min</button>
+            <button className="w-full border-2 border-gray-800 py-2">Varje timme</button>
+            <button className="w-full border-2 border-gray-800 py-2">Var 2:a timme</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="max-w-md mx-auto bg-white min-h-screen border-4 border-gray-800 font-mono">
+      {/* Header */}
+      <div className="bg-gray-800 text-white p-4 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <Car className="w-5 h-5" />
+          <span className="font-bold">MicroMove</span>
+        </div>
+        <div className="text-xs">14:32</div>
+      </div>
+
+      {/* Content */}
+      <div className="bg-white">
+        {screen === 'home' && <HomeScreen />}
+        {screen === 'redlight' && <RedLightScreen />}
+        {screen === 'pain' && <PainScreen />}
+        {screen === 'tank' && <TankScreen />}
+        {screen === 'posture' && <PostureScreen />}
+        {screen === 'library' && <LibraryScreen />}
+        {screen === 'settings' && <SettingsScreen />}
+      </div>
+
+      {/* Bottom Navigation */}
+      <div className="border-t-4 border-gray-800 bg-white grid grid-cols-4 fixed bottom-0 left-0 right-0 max-w-md mx-auto">
+        <button 
+          onClick={() => setScreen('home')}
+          className={`p-4 border-r-2 border-gray-800 ${screen === 'home' ? 'bg-gray-200' : ''}`}
+        >
+          <Home className="w-6 h-6 mx-auto" />
+          <div className="text-xs mt-1">Hem</div>
+        </button>
+        <button 
+          onClick={() => setScreen('library')}
+          className={`p-4 border-r-2 border-gray-800 ${screen === 'library' ? 'bg-gray-200' : ''}`}
+        >
+          <Book className="w-6 h-6 mx-auto" />
+          <div className="text-xs mt-1">Bibliotek</div>
+        </button>
+        <button 
+          onClick={() => setScreen('pain')}
+          className={`p-4 border-r-2 border-gray-800 ${screen === 'pain' ? 'bg-gray-200' : ''}`}
+        >
+          <AlertCircle className="w-6 h-6 mx-auto" />
+          <div className="text-xs mt-1">Smärta</div>
+        </button>
+        <button 
+          onClick={() => setScreen('settings')}
+          className={`p-4 ${screen === 'settings' ? 'bg-gray-200' : ''}`}
+        >
+          <Settings className="w-6 h-6 mx-auto" />
+          <div className="text-xs mt-1">Mer</div>
+        </button>
+      </div>
+
+      {/* Spacer for bottom nav */}
+      <div className="h-20"></div>
+
+      {/* Prototype Note */}
+      <div className="fixed top-4 right-4 bg-yellow-200 border-2 border-gray-800 p-2 text-xs max-w-40 hidden md:block">
+        <div className="font-bold mb-1">📝 Prototyp</div>
+        <div>Klicka runt för att testa flödet</div>
+      </div>
+    </div>
+  );
+}
